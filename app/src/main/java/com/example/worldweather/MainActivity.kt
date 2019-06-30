@@ -22,8 +22,8 @@ class MainActivity : AppCompatActivity() {
         printCityWeather("Jerusalem")
     }
 
-    private fun printCityWeather(query: String) {
-        service?.getCityWeather(query, WeatherManager.appId)?.enqueue(object:
+    private fun printCityWeather(cityName: String) {
+        service?.getCityWeather(cityName, WeatherManager.appId)?.enqueue(object:
             Callback<CityWeather> {
             override fun onResponse(call: Call<CityWeather>, response: Response<CityWeather>) {
                 if (response.code() == 200) {
