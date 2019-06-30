@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity() {
                 if (response.code() == 200) {
                     Log.d("getCityWeather", response.body()?.name + " : "
                             + (response.body()?.weathers?.first()?.description ?: ""))
+                } else {
+                    Log.d("getCityWeather", response.message())
                 }
             }
             override fun onFailure(call: Call<CityWeather>, t: Throwable) {
