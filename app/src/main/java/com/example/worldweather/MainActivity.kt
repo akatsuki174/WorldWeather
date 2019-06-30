@@ -20,7 +20,8 @@ class MainActivity : AppCompatActivity() {
             Callback<CityWeather> {
             override fun onResponse(call: Call<CityWeather>, response: Response<CityWeather>) {
                 if (response.code() == 200) {
-                    Log.d("getCityWeather", response.toString())
+                    Log.d("getCityWeather", response.body()?.name + " : "
+                            + (response.body()?.weathers?.first()?.description ?: ""))
                 }
             }
             override fun onFailure(call: Call<CityWeather>, t: Throwable) {
