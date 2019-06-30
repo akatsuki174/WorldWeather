@@ -9,12 +9,21 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
+    private var service: WeatherService? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val service = WeatherManager.getInstance().create()
-        service.getCityWeather("Tokyo", "bc0bad98583f474e3ae5166d871415f0").enqueue(object :
+        service = WeatherManager.getInstance().create()
+        printCityWeather("Tokyo")
+        printCityWeather("London")
+        printCityWeather("Beijing")
+        printCityWeather("Jerusalem")
+    }
+
+    private fun printCityWeather(query: String) {
+        service?.getCityWeather(query, WeatherManager.appId)?.enqueue(object:
             Callback<CityWeather> {
             override fun onResponse(call: Call<CityWeather>, response: Response<CityWeather>) {
                 if (response.code() == 200) {
@@ -24,10 +33,10 @@ class MainActivity : AppCompatActivity() {
                     Log.d("getCityWeather", response.message())
                 }
             }
+
             override fun onFailure(call: Call<CityWeather>, t: Throwable) {
-                Log.d("getCityWeather", t.message)
+                Log.d("getCityWeather", t.stackTrace.toString())
             }
         })
     }
-
 }
