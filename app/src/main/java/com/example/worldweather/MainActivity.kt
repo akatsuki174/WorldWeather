@@ -16,10 +16,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         service = WeatherManager.getInstance().createWeatherService()
-        printCityWeather("Tokyo")
-        printCityWeather("London")
-        printCityWeather("Beijing")
-        printCityWeather("Jerusalem")
+
+        val cities = listOf("Tokyo", "London", "Beijing", "Jerusalem")
+        cities.map { printCityWeather(it) }
     }
 
     private fun printCityWeather(cityName: String) {
