@@ -14,7 +14,7 @@ class WeatherManager private constructor() {
         }
     }
 
-    fun create(): WeatherService {
+    fun createWeatherService(): WeatherService {
         val retrofit = Retrofit.Builder()
             .addConverterFactory(
                 GsonConverterFactory.create()

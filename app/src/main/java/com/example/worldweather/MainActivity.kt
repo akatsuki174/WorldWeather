@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        service = WeatherManager.getInstance().create()
+        service = WeatherManager.getInstance().createWeatherService()
         printCityWeather("Tokyo")
         printCityWeather("London")
         printCityWeather("Beijing")
