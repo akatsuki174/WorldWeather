@@ -1,7 +1,7 @@
 package com.example.worldweather
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,12 +22,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun printCityWeather(cityName: String) {
-        service?.getCityWeather(cityName, WeatherManager.appId)?.enqueue(object:
+        service?.getCityWeather(cityName, WeatherManager.appId)?.enqueue(object :
             Callback<CityWeather> {
             override fun onResponse(call: Call<CityWeather>, response: Response<CityWeather>) {
                 if (response.code() == 200) {
-                    Log.d("getCityWeather", response.body()?.name + " : "
-                            + (response.body()?.weathers?.first()?.description ?: ""))
+                    Log.d(
+                        "getCityWeather", response.body()?.name + " : "
+                                + (response.body()?.weathers?.first()?.description ?: "")
+                    )
                 } else {
                     Log.d("getCityWeather", response.message())
                 }
