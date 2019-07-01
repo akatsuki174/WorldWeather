@@ -14,14 +14,14 @@ class WeatherManager private constructor() {
         }
     }
 
-    fun createWeatherService(): WeatherService {
+    fun createWeatherApi(): WeatherApi {
         val retrofit = Retrofit.Builder()
             .addConverterFactory(
                 GsonConverterFactory.create()
             )
             .baseUrl(baseUrl)
             .build()
-        return retrofit.create(WeatherService::class.java)
+        return retrofit.create(WeatherApi::class.java)
     }
 
 }
